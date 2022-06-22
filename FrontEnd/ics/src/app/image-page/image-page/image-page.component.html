@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <div *ngIf="!(content$ | async)" class="image-not-found card">
+    <h1>Oops!</h1>
+    <p>That image doesn't exist</p>
+    <div class="button-wrapper">
+      <button type="button" (click)="goToHome()">Go Back to Analyser</button>
+      <button type="button" (click)="goToGallery()">Go Back to Gallery</button>
+    </div>
+  </div>
+
+  <div *ngIf="content$ | async as image" class="card">
+    <div class="card-content">
+      <div class="card-image">
+        <img src="{{image.url}}" alt="Image cannot be displayed">
+      </div>
+      <div class="card-info">
+        <h4>Tags:</h4>
+        <div class="tags">
+          <p
+            *ngFor="let tag of image.imageTags"
+            title="Conf: {{tag.confidence.toFixed(2)}}%"
+            class="tag">{{tag.tag.name}}
+          </p>
+        </div>
+        <h4>Analysed on: </h4>
+        <span>{{format(image.added_on)}}</span>
+        <h4>Used service: </h4>
+        <span>{{image.service}}</span>
+        <h4>Image width: </h4>
+        <span>{{image.width}}</span>
+        <h4>Image height: </h4>
+        <span>{{image.height}}</span>
+      </div>
+    </div>
+    <div class="button-wrapper">
+      <button type="button" (click)="goToHome()">Go Back to Analyser</button>
+      <button type="button" (click)="goToGallery()">Go Back to Gallery</button>
+    </div>
+  </div>
+</div>

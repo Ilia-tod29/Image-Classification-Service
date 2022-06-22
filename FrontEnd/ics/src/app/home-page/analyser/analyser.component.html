@@ -1,0 +1,21 @@
+<div class="analyser-wrapper">
+  <form [formGroup]="imageFormGroup" (ngSubmit)="sendUrl()">
+    <label for="inputUrl">Point to an image to tag...</label>
+    <input clrInput
+           id="inputUrl"
+           type="text"
+           name="inputUrl"
+           formControlName="inputUrl"
+           [ngClass]="{'invalid' : (imageFormGroup.get('inputUrl')?.invalid && imageFormGroup.get('inputUrl')?.touched)}"
+           placeholder="Enter URL..."
+           required/>
+
+    <span *ngIf="imageFormGroup.get('inputUrl')?.invalid && imageFormGroup.get('inputUrl')?.touched" class="invalid-url">URL is required</span>
+    <button id="analyseButton" type="submit">Analyse</button>
+  </form>
+  <div *ngIf="this.errorMessage" class="error-message">
+    <cds-icon class="error-icon" shape="error-standard"></cds-icon>
+    <h4>{{this.errorMessage}}</h4>
+  </div>
+
+</div>

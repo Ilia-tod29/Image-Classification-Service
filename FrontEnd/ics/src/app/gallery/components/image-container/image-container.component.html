@@ -1,0 +1,47 @@
+<div class="gallery-wrapper">
+  <div class="gallery">
+    <label class="section-heading">Image Gallery</label>
+
+    <div class="ng-autocomplete search">
+      <ng-autocomplete
+        placeholder="Enter tag name..."
+        [data]="tags"
+        [searchKeyword]="keyword"
+        (inputCleared)="clearInput()"
+        (selected)='selectEvent($event)'
+        (focusout)='focusOut($event)'
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate">
+      </ng-autocomplete>
+
+      <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+      </ng-template>
+
+      <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+      </ng-template>
+    </div>
+
+    <div class="image-area">
+      <ics-image
+        *ngFor="let image of images$ | async"
+        [image]="image"
+        [page]="page"
+        class="single-image"
+      ></ics-image>
+    </div>
+  </div>
+  <hr>
+
+  <div *ngIf="!this.isSearching" class="pagination">
+    <div class="page"
+         *ngFor="let p of pages$ | async; let i=index"
+         [ngClass]="{'active': i === page}">
+      <a href=""
+         (click)="setPage(i, $event)">
+        {{i}}
+      </a>
+    </div>
+  </div>
+</div>

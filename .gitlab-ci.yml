@@ -1,0 +1,99 @@
+#STEP 1: enviroment variables
+variables:
+#  MAVEN_CLI_OPTS: "example_cli_opts"
+#  MAVEN_OPTS: "example_mvn_opts"
+   MAVEN_VERSION: 0.0.1-SNAPSHOT
+
+
+# STEP 2: define our docker image which will be used to execute the pipeline
+image: maven:3.8-openjdk-11
+
+# STEP 3: define our pipeline's stages
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  - checkstyle
+  - test
+  - package
+
+# STEP 4: define our jobs, each job run in order in the stages you have defined in STEP 4
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  variables:
+    BUILD_VAR: "Building..."
+  script: 
+    |
+    echo $BUILD_VAR
+    echo $MAVEN_VERSION
+    cd BackEnd
+    cd ics
+    mvn compile
+    mvn install -DskipTests
+  artifacts:
+    paths: 
+      - target/ics-0.0.1-SNAPSHOT.jar
+
+
+checkstyle-job:
+  stage: checkstyle
+  script:
+    |
+    echo "Checkstyle running..."
+    cd BackEnd
+    cd ics
+    mvn checkstyle:checkstyle
+
+unit-test-job:
+  stage: test
+  script:
+    |
+    echo "Running unit tests.."
+    cd BackEnd
+    cd ics
+    mvn test
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - "./BackEnd/ics/target/*-reports/TEST-*.xml"
+
+
+
+# unit-test-job:   # This job runs in the test stage.
+#   stage: test    # It only starts when the job in the build stage completes successfully.
+#   script:
+#     |
+#     echo "Running unit tests.."
+#     cd BackEnd
+#     cd ics
+#     mvn test
+#     mvn install -DskipTests=true
+
+# package-job:
+#   stage: package
+#   image: docker:latest
+#   variables:
+#     DOCKER_USERNAME: vmwaretalentboost
+#   dependencies:
+#     - build-job
+#   tags:
+#     - docker
+#   script:
+#     |
+#     echo "This is the package stage!"
+#     docker build -t $DOCKER_USERNAME/talentboost-ilia29 .
+#     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+#     docker push $DOCKER_USERNAME/talentboost-ilia29
+
+
+package-job: # This job runs in the package stage.
+  stage: package
+  dependencies:
+    - build-job
+  script:
+    |
+    echo "Running package stage..."
+    cd BackEnd
+    cd ics
+    mvn package
+
+

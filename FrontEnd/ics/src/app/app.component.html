@@ -1,0 +1,31 @@
+<div class="app-frame mat-app-background" [ngClass]="isDarkTheme ? 'dark-theme' : 'light-theme'">
+  <div class="main-container">
+    <header class="header header-6">
+      <div class="branding">
+        <a routerLink="/">
+          <cds-icon shape="process-on-vm"></cds-icon>
+          <span class="title">Image Analyser</span>
+        </a>
+      </div>
+      <div class="header-nav">
+        <a routerLink="" class="nav-link underline-animation">
+          <span>Analyser</span>
+        </a>
+        <a routerLink="/gallery" class="nav-link underline-animation">
+          <span class="analyser">Gallery</span>
+        </a>
+        <a id="not-needed" href="#"></a>
+        <mat-slide-toggle class="toggle-theme"
+                          [(ngModel)]="isDarkTheme"
+                          (click)="toddleTheme()">
+          <cds-icon *ngIf="isDarkTheme" shape="moon"></cds-icon>
+          <cds-icon *ngIf="!isDarkTheme" shape="sun"></cds-icon>
+        </mat-slide-toggle>
+      </div>
+    </header>
+  </div>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

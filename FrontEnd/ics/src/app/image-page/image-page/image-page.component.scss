@@ -1,0 +1,108 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.image-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.image-not-found h1 {
+  font-size: 60px;
+}
+.image-not-found p {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.card-image img {
+  max-width: 500px;
+  max-height: 500px;
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+.card-info {
+  margin-left: 20px;
+  margin-top: 20px;
+  color: black;
+
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tag {
+  border-radius: 2px;
+  background-color: #666897;
+  color: white;
+  margin-left: 5px;
+  margin-top: 0;
+  margin-bottom: 10px !important;
+  padding: 1px 5px 1px 5px;
+  text-align: center;
+}
+
+.tag:hover,
+h4:hover,
+span:hover{
+  cursor: default;
+}
+.wrapper button {
+  width: 250px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00364D;
+  color: white;
+  font-size: 20px;
+}
+
+.wrapper button:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 600px;
+}
+
+.card .button-wrapper {
+  margin: 20px auto
+}
+.card {
+  padding-top: 30px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.card-info h4 {
+  margin-bottom: 0;
+}
+
+.card-info span {
+  display: block;
+  margin-bottom: 20px;
+}
+

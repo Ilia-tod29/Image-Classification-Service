@@ -1,0 +1,84 @@
+.app-frame {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.analyser-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 600px;
+  padding-left: 50%;
+}
+
+.analyser-wrapper form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.analyser-wrapper form label {
+  font-size: 40px;
+  margin-bottom: 40px;
+  width: 500px;
+}
+
+.analyser-wrapper input {
+  width: 700px;
+  font-size: 20px;
+}
+
+#analyseButton {
+  margin-top: 40px;
+  width: 250px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00364D;
+  color: white;
+  font-size: 20px;
+}
+
+
+#analyseButton:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+input.ng-dirty.ng-invalid {
+  border-bottom: 1px solid red;
+}
+.invalid-url {
+  color: red;
+}
+
+.error-message {
+  color: white;
+  text-align: center;
+  border: 1px solid red;
+  border-radius: 10px;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 70%;
+  max-height: 50px;
+  margin: 50px auto auto;
+}
+.error-message h4{
+  color: white;
+  margin: 5px 0 5px 0;
+}
+
+.error-icon {
+  margin: 5px 20px 5px 0;
+  width: 25px;
+  height: 25px;
+}
